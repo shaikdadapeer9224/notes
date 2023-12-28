@@ -1,0 +1,308 @@
+Q1) Given a list of integers, find out all the even numbers exist in the list using Stream functions? list=[2,34,678,3]
+ package com.assignment;
+//Given a list of integers, find out all the even numbers exist in the list using Stream functions? list=[2,34,678,3]
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class EvenNuList {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Integer> no= Arrays.asList(2,34,678,3);
+		List<Integer> evenNu=no.stream().filter(nu->nu%2==0).collect(Collectors.toList());
+		System.out.println("even number:"+evenNu);
+	}
+}
+
+
+
+Q2 Given a list of integers, find out all the numbers starting with 1 using Stream functions?
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StartingNu {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Number> no= List.of(1765,87,35.6,196,0,13,1, 78);
+		List<Number> result = no.stream().filter(nu->String.valueOf(nu).startsWith("1")).collect(Collectors.toList());
+		
+        System.out.println("number starts with 1:"+result);
+	}
+
+}
+Q3) How to find duplicate elements in a given integers list in java using Stream functions?
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+//How to find duplicate elements in a given integers list in java using Stream functions?
+public class DuplicateElet {
+
+	public static void main(String[] args) {
+		
+		List<Integer> no=List.of(1,6,2,9,1,3,2,4,5,1,6,2);
+		Set<Integer> newitemSet= new HashSet<>();
+		no.stream().filter(nums->!newitemSet.add(nums)).forEach(n->System.out.println(n));
+	}
+
+}
+Q4) Given the list of integers, find the first element of the list using Stream functions?
+ 
+import java.util.Arrays;
+import java.util.List;
+
+public class FindFirstElet {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Integer> li=Arrays.asList(9,8,6,7,5,4,3,2,1);
+		Integer FirstElement=li.stream().findFirst().orElse(null);
+		if(FirstElement!=null) {
+		System.out.println("the first element is"+FirstElement);
+		}
+		else {
+			System.out.println("list is empty");
+		}
+	}
+
+}
+
+
+
+Q5) Given a list of integers, find the total number of elements present in the list using Stream functions?
+import java.util.Arrays;
+import java.util.List;
+
+public class FindTotalNo {
+
+	public static void main(String[] args) {
+		// TODO Auto -generated method stub
+		List<Integer> li= Arrays.asList(37,86,9076,6,872,8,1);
+		long count=li.stream().count();
+         System.out.println("total number in the list"+count);
+	}
+
+}
+
+Q9) Given a list of integers, sort all the values present in it using Stream functions?
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class sortelements {
+	public static void main(String[] args) {
+		List<Integer> list=Arrays.asList(1,3,8,5,6,3,4,2);
+		List<Integer> sortedlist=list.stream().sorted().collect(Collectors.toList());
+		System.out.println(sortedlist);
+	}
+
+}
+
+Q6) Given a list of integers, find the maximum value element present in it using Stream functions?
+ 
+import java.util.*;
+
+
+public class maximum {
+	public static void main(String[] args) {
+		List<Integer> list=Arrays.asList(1,9,6,78,43,0,839,8403);
+		int max=list.stream().mapToInt(Integer::intValue).max().orElse(0);
+		System.out.println(max);
+	}
+
+}
+
+Q7) Given a String, find the first non-repeated character in it using Stream functions? ********
+
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class NonRepeted {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input= "Capgemini";
+		Map<Character, Long> charCountMap=input.chars().mapToObj(c->(char)c).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+		char firstNonRepeated= input.chars().mapToObj(c->(char)c).filter(c->charCountMap.get(c)==1).findFirst().orElseThrow(()->new RuntimeException("no non-repeatedchara found"));
+        System.out.println("first non-repeatedcharacter:"+firstNonRepeated);
+	}
+
+}
+Q8) Given a String, find the first repeated character in it using Stream functions?
+ 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+public class RepeatedWord {
+
+	    public static void main(String[] args) {
+	        List<String> inputList = Arrays.asList("2", "3", "34", "", "5", "5", "4", "3", "3", "3");
+
+	        Map<String, Long> counts = inputList.stream()
+	                .filter(s -> !s.isEmpty())  // Filter out empty strings
+	                .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+
+	        counts.forEach((key, value) -> System.out.println(key + "-" + value));
+	    }
+	}
+Q9) Given a list of integers, sort all the values present in it using Stream functions?
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+	public class SortingValue{
+		public static void main(String[] args) {
+			Integer a[]= {12,87,98,34,56,13};
+
+			List<Integer> l1=Arrays.asList(a);
+
+			List<Integer> l2=l1.stream().sorted((i1,i2)->i1>i2?1:i1<i2?-1:0).collect(Collectors.toList());
+
+			l2.forEach(System.out::println);
+	 
+		}
+	 
+	}
+
+
+
+ 
+Q11) Write a Java 8 program to concatenate two Streams?
+import java.util.stream.Stream;
+public class Concate {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Stream<String> stream1=Stream.of("king","kohli");
+        Stream<String> stream2=Stream.of("shankar","gavkare");
+        
+        Stream<String> concatenatedStream= Stream.concat(stream1, stream2);
+        concatenatedStream.forEach(System.out::println);
+	}
+
+}
+Q12 ) Write a Java 8 program to find the number of Strings in a list whose length is greater 5
+
+import java.util.Arrays;
+import java.util.List;
+public class GreaterLength {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        List<String> stringList=Arrays.asList("shankar","rohit","king","kohli");
+        long count =stringList.stream().filter(s->s.length()>5).count();
+        System.out.println("Number of string with lengthgtreater than 5:"+count);
+	}  
+
+}
+Q13) Explain StringJoiner Class in Java 8? How can we achieve joining multiple Strings
+using StringJoiner Class?
+ANS:StringJoiner which allows you to join more than one String using a specified delimiter or joiner.
+ For example, you can join multiple strings separated by comma (,) to create a CSV String, Or even better, 
+  you can create a full path for a directory in Linux by joining String using forward slash "/" as explained by Cay.
+
+Q14)Find the Word/number got repeated by using Stream api
+ 
+input:2,3,34,,5,5,4,3,3,3
+ 
+output:2-1,3-4,34-1,5-2,4-1
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+public class RepeatedWord {
+
+	    public static void main(String[] args) {
+	        List<String> inputList = Arrays.asList("2", "3", "34", "", "5", "5", "4", "3", "3", "3");
+
+	        Map<String, Long> counts = inputList.stream()
+	                .filter(s -> !s.isEmpty())  // Filter out empty strings
+	                .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+
+	        counts.forEach((key, value) -> System.out.println(key + "-" + value));
+	    }
+	}
+
+ 15) Write a Java Lambda Expression to Create Thread
+ANS: Java thread via Runnable using Lambda expression
+
+Lambda Runnable Runnable task2 = () -> { System. out. println("Task #2 is running"); }; // start the thread new Thread(task2). start();
+
+
+16) How Lambda Expression and Functional Interfaces are Related?
+ANS:Lambda expressions are nothing but the implementation of the functional interface.
+     A functional interface is nothing but an interface that has only one abstract method. 
+     To declare an interface as a functional interface, Java provides an annotation @FunctionalInterface.
+
+17)Given a list of Strings. Convert String to uppercase and Join them with coma (,) using Stream api
+ 
+List=["USA", "Japan", "France", "Germany", "Italy", "U.K.","Canada"]
+ 
+	import java.util.List;
+	import java.util.stream.Collectors;
+
+	public class UpperCase{
+	    public static void main(String[] args) {
+	        List<String> inputList = List.of("USA", "Japan", "France", "Germany", "Italy", "U.K.", "Canada");
+
+	        String result = inputList.stream()
+	            .map(String::toUpperCase)  // Convert each string to uppercase
+	            .collect(Collectors.joining(", "));  // Join the strings with a comma and space
+
+	        System.out.println("Uppercase and Joined String: " + result);
+	    }
+	}
+18)Given a list of Integer find square of all distinct numbers By using stream api
+ 
+list=[9, 10, 3, 4, 7, 3, 4]
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Square {
+	
+	
+	    public static void main(String[] args) {
+	        List<Integer> list = List.of(9, 10, 3, 4, 7, 3, 4);
+
+	        List<Integer> distinctSquares = list.stream()
+	                .distinct()  // Get distinct elements
+	                .map(num -> num * num)  // Square each element
+	                .collect(Collectors.toList());
+
+	        System.out.println("Distinct Squares: " + distinctSquares);
+	    }
+	}
+
+
+
+
+Q19 Given a List of Integers find total count, min, max, sum, and the average for numbers by using Stream apiinput :list=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]output: count=10, sum=129, min=2, average=12.900000, max=29
+import java.util.List;
+import java.util.stream.Collectors;
+public class Average {
+
+	    public static void main(String[] args) {
+	        List<Integer> list = List.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+	        long count = list.stream().count();
+	        int sum = list.stream().mapToInt(Integer::intValue).sum();
+	        int min = list.stream().mapToInt(Integer::intValue).min().orElse(0);
+	        int max = list.stream().mapToInt(Integer::intValue).max().orElse(0);
+	        double average = list.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+
+	        System.out.println("Count: " + count);
+	        System.out.println("Sum: " + sum);
+	        System.out.println("Min: " + min);
+	        System.out.println("Average: " + String.format("%.6f", average));
+	        System.out.println("Max: " + max);
+	    }
+	}
+
+
+
+
+ 
